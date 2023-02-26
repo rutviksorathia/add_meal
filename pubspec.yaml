@@ -44,6 +44,8 @@ dependencies:
   dotted_border: ^2.0.0+3
   image_picker: ^0.8.5+3
   image_cropper: ^3.0.0
+  firebase_storage: ^11.0.14
+  firebase_core : ^0.5.3
 
 
 dev_dependencies:

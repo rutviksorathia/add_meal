@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,21 +17,29 @@ class CameraView extends StatefulWidget {
 class _CameraViewState extends State<CameraView> {
   File? profileImage;
   bool? isLoading = false;
+  String imageUrl = '';
 
   Future getImage(ImageSource source) async {
+    setState(() {
+      isLoading = true;
+    });
+    var image = await ImagePicker().pickImage(source: source);
+
+    if (image == null) return;
+
+    File file = File(image.path);
+
+    setState(() {
+      profileImage = file;
+    });
     try {
-      setState(() {
-        isLoading = true;
-      });
-      var image = await ImagePicker().pickImage(source: source);
+      Reference referenceRoot = FirebaseStorage.instance.ref();
+      Reference referenceImages = referenceRoot.child('images');
 
-      if (image == null) return;
+      Reference referenceImageToUpload = referenceImages.child(image.name);
 
-      File file = File(image.path);
-
-      setState(() {
-        profileImage = file;
-      });
+      await referenceImageToUpload.putFile(File(image.path));
+      imageUrl = await referenceImageToUpload.getDownloadURL();
     } finally {
       setState(() {
         isLoading = false;
