@@ -41,6 +41,9 @@ dependencies:
   stacked_hooks: ^0.2.0
   stacked: ^3.0.1
   google_fonts: ^4.0.3
+  dotted_border: ^2.0.0+3
+  image_picker: ^0.8.5+3
+  image_cropper: ^3.0.0
 
 
 dev_dependencies:
