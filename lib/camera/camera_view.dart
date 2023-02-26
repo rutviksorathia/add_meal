@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,14 @@ class _CameraViewState extends State<CameraView> {
 
       await referenceImageToUpload.putFile(File(image.path));
       imageUrl = await referenceImageToUpload.getDownloadURL();
+
+      await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 20,
+            channelKey: 'basic_channel',
+            title: 'Meal App',
+            body: 'Thank you for sharing food with me'),
+      );
     } finally {
       setState(() {
         isLoading = false;
