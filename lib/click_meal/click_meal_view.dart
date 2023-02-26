@@ -3,8 +3,8 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meal_app/camera/camera_view.dart';
 
-class ClickMeal extends StatelessWidget {
-  const ClickMeal({super.key});
+class ClickMealView extends StatelessWidget {
+  const ClickMealView({super.key});
 
   @override
   Widget build(BuildContext context) {

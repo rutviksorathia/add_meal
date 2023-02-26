@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meal_app/click_meal/click_meal.dart';
+import 'package:meal_app/click_meal/click_meal_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +37,7 @@ class _MealAppState extends State<MealApp> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GestureDetector(
-                onTap: () => Get.to(() => const ClickMeal()),
+                onTap: () => Get.to(() => const ClickMealView()),
                 child: Container(
                   color: Colors.amber,
                   child: Padding(
